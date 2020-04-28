@@ -1,7 +1,0 @@
----
-layout: post
-title:  "Welcome!"
-date:   2019-04-18 16:30:00 +0930
-categories: meta
----
-Welcome to my blog! I hope this will be a place where I can share some obscure knowledge (i.e. Swift Playground Books) which others can hopefully learn from.
