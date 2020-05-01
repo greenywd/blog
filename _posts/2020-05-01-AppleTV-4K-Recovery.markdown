@@ -15,7 +15,7 @@ Image from /u/Jar30002 on their [Reddit post][appletv-recovery-reddit] about Rec
 
 I believe you can get into the Recovery Mode once the Apple TV has been setup (not that it's very useful) through a combination of button presses, but as this one Apple TV hadn't finished setting up that didn't work. Luckily, I came across a [comment on a Reddit thread][appletv-recovery-process-reddit] which put me on the right track. The exact instructions given by the commenter didn't work for me, but unplugging the Apple TV from power, waiting a second, plugging it back in and repeating multiple times worked. Your mileage may vary, but I found I had to unplug completely from the power outlet, instead of turning the switch on and off.
 
-And to my surprise, I was greeted with the recovery screen where I was able to reset the Apple TV's settings and start the configuration process again. Luckily, this time it went through the configuraiton like the rest of the Apple TVs did in the first place.
+And to my surprise, I was greeted with the recovery screen where I was able to reset the Apple TV's settings and start the configuration process again. Luckily, this time it went through the configuraiton without issues, just like the rest of the Apple TVs did in the first place.
 
 [restore-appletv]: https://support.apple.com/en-us/HT203028
 [appletv-recovery-image]: {{site.baseurl}}/assets/appletv-recovery-mode.jpg
