@@ -5,26 +5,18 @@ date:   2020-10-01 17:00:00 +0930
 categories: [work, dhcp]
 ---
 
-[Unify Documentation][unifi-doc]
+Let me preface by saying I'm not an expert on VoIP Phones (or DHCP Options) in any way.
+
+To keep things short, DHCP Option 43 allows you to specify Vendor Specific options, for example configuring IP phones with an address for a DLS Server. The DHCP server that would be serving addresses for these phones is on a switch whose configuration is done entirely through the CLI. At first I thought no big deal, but long story short I ended up constructing a hex value which the switch would pass on to the phones. I ended up with something like this in the DHCP configuration:
 
 `option 43 hex 01075369656d656e73020400000065031a73646c703a2f2f39332e3132322e3131342e39363a3138343433ff`
 
+Now the fun part is how that string is constructed. The [Unify Documentation][unify-doc] goes into more depth, but the guts of it is that the hex value contains the string 'Siemens' (the vendor string), the VLAN ID and the address of the DLS Server.
 
+- Siemens : `5369656d656e73`
+- 101 : `00000065` (convert decimal to hex)
+- sdlp://93.122.114.96:18443 : `73646c703a2f2f39332e3132322e3131342e39363a3138343433`
 
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
-
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
-
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+However, what I didn't realise is that you need to specify the tag and length before each value. The [Unify Docs][unify-doc] has each of these values, but for an example `5369656d656e73` turns into `01075369656d656e73` (tag 01, len 07). I did this for the other 2 values, and ended the hex value with `ff` as specified by the docs, and voilà, the phones work!
 
 [unify-doc]: https://wiki.unify.com/wiki/VLAN_ID_Discovery_over_DHCP
